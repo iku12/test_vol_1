@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hk1.Exhibition">
+     <!--    <resultMap type = "com.hk.dtos.HkDto" id="HkDtoMap">
+      <result culumn="seq" property="="seq1" />
+   </resultMap>
+ -->
+    <!-- 전시 -->
+  
+  
+  <insert id="insertExhibition" parameterType="ExhibitionDto">
+   INSERT INTO GALLERY.EXHIBITION (E_NO, E_TITLE, E_EXPLAIN, A_NO, A_NAME, E_CLICK)
+   VALUES(EXHIBITION_SEQ.NEXTVAL, #{e_title},#{e_explain},#{a_no},#{a_name},0)
+   </insert>
+  
+  <update id="updateExhibition" parameterType="ExhibitionDto">
+   UPDATE GALLERY.EXHIBITION SET E_TITLE=#{e_title}, E_EXPLAIN=#{e_explain}
+   WHERE E_NO=#{e_no}
+  </update>
+  
+  
+  <delete id="deleteExhibition" parameterType="int">
+   DELETE FROM GALLERY.EXHIBITION 
+   WHERE E_NO=#{e_no}
+  </delete>
+  
+  <select id="selectExhibition" parameterType="int" resultType="ExhibitionDto">
+   SELECT E_NO, E_TITLE, E_EXPLAIN, A_NO, A_NAME, E_CLICK 
+   FROM GALLERY.EXHIBITION
+   WHERE E_NO=#{e_no}
+  </select>
+  
+  
+  <select id="selectExhibitionList" parameterType="int" resultType="ExhibitionDto">
+   SELECT E_NO, E_TITLE, E_EXPLAIN, A_NO, A_NAME, E_CLICK FROM GALLERY.EXHIBITION
+   WHERE A_NO=#{a_no}
+  </select>
+  
+  
+  <select id="selectExhibitionList1" resultType="ExhibitionDto" >
+   SELECT E_NO, E_TITLE, E_EXPLAIN, A_NO, A_NAME, E_CLICK
+   FROM GALLERY.EXHIBITION
+  </select>
+  
+   
+  </mapper>
